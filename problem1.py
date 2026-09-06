@@ -53,6 +53,11 @@ def relation_analyze(data: pd.DataFrame):
     print(f'皮尔逊相关系数:{pearsonr_corr},p值:{pearsonr_p}')
     print(f'斯皮尔逊相关系数:{spearmanr_corr},p值:{spearmanr_p}')
     
+    sns.pairplot(data)
+    # plt.title('散点图矩阵')
+    plt.savefig('./figure/散点图矩阵.jpg',dpi=400)
+    plt.savefig('./figure/散点图矩阵.pdf',dpi=400)
+    plt.show()    
     
 
 
