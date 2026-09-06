@@ -40,6 +40,7 @@ def relation_analyze(data: pd.DataFrame):
     plt.tight_layout()
     fig.suptitle('两种相关系数热力图')
     plt.savefig('./figure/相关系数热力图.jpg',dpi=400)
+    plt.savefig('./figure/相关系数热力图.pdf',dpi=400)
     plt.show()
     
     to_analyze_more_specific=input('请输入需要进行相关性假设检验的两个种类(用空格分隔):').split(' ')
