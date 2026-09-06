@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import pearsonr,spearmanr
+from sklearn.cluster import KMeans
 
 #设置中文字体
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文字体为SimHei
@@ -58,6 +59,33 @@ def relation_analyze(data: pd.DataFrame):
     plt.savefig('./figure/散点图矩阵.jpg',dpi=400)
     plt.savefig('./figure/散点图矩阵.pdf',dpi=400)
     plt.show()    
+
+def k_means(data:pd.DataFrame):   
+    data=data.T
+    # print(data)
+    
+    wccs=[]
+    
+    for i in range(1,7):
+        
+    
+        model=KMeans(n_clusters=i,random_state=42)
+        model.fit(data)
+        wccs.append(model.inertia_)
+    plt.plot(range(1,7),wccs,marker='o')
+    plt.title('肘部法则确定聚类数')
+    plt.xlabel('聚类数')
+    plt.ylabel('簇内平方和')
+    plt.savefig('./figure/肘部法则确定聚类数.jpg',dpi=400)
+    plt.savefig('./figure/肘部法则确定聚类数.pdf',dpi=400)
+    plt.grid(alpha=0.3,linestyle='--')
+    plt.show()
+    # print('聚类中心:',model.cluster_centers_)
+    n_clusters=int(input('请输入聚类数:'))
+    model=KMeans(n_clusters=n_clusters,random_state=42)
+    model.fit(data)
+    print('每个样本的聚类标签:',model.labels_)
+    print(data.index)
     
 
 
@@ -65,5 +93,6 @@ if __name__=="__main__":
     #获得可以进行相关性分析的表格
     data=data_preprocessing()
     print(data.describe())
-    relation_analyze(data)
+    # relation_analyze(data)
+    k_means(data)
     pass
