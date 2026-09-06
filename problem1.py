@@ -86,6 +86,7 @@ def k_means(data:pd.DataFrame):
     model.fit(data)
     print('每个样本的聚类标签:',model.labels_)
     print(data.index)
+    print(np.sqrt(np.sum((data.values-model.cluster_centers_[1])**2,axis=1)))
     
 
 
