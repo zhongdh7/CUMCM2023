@@ -59,5 +59,6 @@ def relation_analyze(data: pd.DataFrame):
 if __name__=="__main__":
     #获得可以进行相关性分析的表格
     data=data_preprocessing()
+    print(data.describe())
     relation_analyze(data)
     pass
